@@ -1,0 +1,286 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
+    <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
+    <IsPackable>false</IsPackable>
+    <Description></Description>
+    <Copyright>Copyright © 2018 www.transmaquila.com</Copyright>
+    <PackageProjectUrl></PackageProjectUrl>
+    <Company>http://www.transmaquila.com</Company>
+    <RootNamespace>ASCA</RootNamespace>
+    <AssemblyName>ASCA</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="6.2.2" />
+    <PackageReference Include="FluentValidation.AspNetCore" Version="7.3.4" />
+    <PackageReference Include="IdentityServer4" Version="2.1.1" />
+    <PackageReference Include="IdentityServer4.AccessTokenValidation" Version="2.3.0" />
+    <PackageReference Include="IdentityServer4.AspNetIdentity" Version="2.1.0" />
+    <PackageReference Include="MailKit" Version="2.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.5" />
+    <PackageReference Include="Serilog.Extensions.Logging.File" Version="1.1.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="1.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DAL\DAL.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.0" />
+    <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Files not to publish (note that the 'dist' subfolders are re-added below) -->
+    <Content Remove="ClientApp\**" />
+    <Content Remove="wwwroot\dist\**" />
+  </ItemGroup>
+
+  <Target Name="DevelopementRunWebpack" AfterTargets="Build" Condition="!Exists('wwwroot\dist\vendor.js')">
+    <!-- Ensure Node.js is installed -->
+    <Exec Command="node --version" ContinueOnError="true">
+      <Output TaskParameter="ExitCode" PropertyName="ErrorCode" />
+    </Exec>
+    <Error Condition="'$(ErrorCode)' != '0'" Text="Node.js is required to build and run this project. To continue, please install Node.js from https://nodejs.org/, and then restart your command prompt or IDE." />
+
+    <!-- In development, the dist files won't exist on the first run or when cloning to
+         a different machine, so rebuild them if not already present. -->
+    <Message Importance="high" Text="Performing first-run Webpack build..." />
+    <Exec Command="npm install" Condition="!Exists('node_modules/webpack/bin/webpack.js')" />
+    <Exec Command="node node_modules/webpack/bin/webpack.js --config webpack.config.vendor.js" />
+    <Exec Command="node node_modules/webpack/bin/webpack.js" />
+  </Target>
+
+  <Target Name="PublishRunWebpack" AfterTargets="ComputeFilesToPublish">
+    <!-- As part of publishing, ensure the JS resources are freshly built in production mode -->
+    <Exec Command="npm install" />
+    <Exec Command="node node_modules/webpack/bin/webpack.js --config webpack.config.vendor.js --env.prod" />
+    <Exec Command="node node_modules/webpack/bin/webpack.js --env.prod" />
+
+    <!-- Include the newly-built files in the publish output -->
+    <ItemGroup>
+      <DistFiles Include="wwwroot\dist\**; ClientApp\dist\**" />
+      <ResolvedFileToPublish Include="@(DistFiles->'%(FullPath)')" Exclude="@(ResolvedFileToPublish)">
+        <RelativePath>%(DistFiles.Identity)</RelativePath>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </ResolvedFileToPublish>
+    </ItemGroup>
+  </Target>
+
+  <ItemGroup>
+    <Content Include="ClientApp\app\assets\locale\ar.json" />
+    <Content Include="ClientApp\app\assets\locale\de.json" />
+    <Content Include="ClientApp\app\assets\locale\es.json" />
+    <Content Include="ClientApp\app\assets\locale\ko.json" />
+    <Content Include="ClientApp\app\assets\locale\en.json" />
+    <Content Include="ClientApp\app\assets\locale\fr.json" />
+    <Content Include="ClientApp\app\assets\locale\pt.json" />
+  </ItemGroup>
+
+
+
+
+  <ItemGroup>
+    <None Update="ClientApp\app\admin\edit-role-dialog.component.html">
+      <DependentUpon>edit-role-dialog.component.ts</DependentUpon>
+    </None>
+    <None Update="ClientApp\app\admin\edit-role-dialog.component.scss">
+      <DependentUpon>edit-role-dialog.component.ts</DependentUpon>
+    </None>
+    <None Update="ClientApp\app\admin\edit-user-dialog.component.html">
+      <DependentUpon>edit-user-dialog.component.ts</DependentUpon>
+    </None>
+    <None Update="ClientApp\app\admin\edit-user-dialog.component.scss">
+      <DependentUpon>edit-user-dialog.component.ts</DependentUpon>
+    </None>
+    <None Update="ClientApp\app\admin\role-editor.component-theme.scss">
+      <DependentUpon>role-editor.component.ts</DependentUpon>
+    </None>
+    <None Update="ClientApp\app\admin\role-editor.component.html">
+      <DependentUpon>role-editor.component.ts</DependentUpon>
+    </None>
+    <None Update="ClientApp\app\admin\role-editor.component.scss">
+      <DependentUpon>role-editor.component.ts</DependentUpon>
+    </None>
+    <None Update="ClientApp\app\admin\role-list.component.html">
+      <DependentUpon>role-list.component.ts</DependentUpon>
+    </None>
+    <None Update="ClientApp\app\admin\role-list.component.scss">
+      <DependentUpon>role-list.component.ts</DependentUpon>
+    </None>
+    <None Update="ClientApp\app\admin\role-list.component.spec.ts">
+      <DependentUpon>role-list.component.ts</DependentUpon>
+    </None>
+    <None Update="ClientApp\app\admin\user-list.component.html">
+      <DependentUpon>user-list.component.ts</DependentUpon>
+    </None>
+    <None Update="ClientApp\app\admin\user-list.component.scss">
+      <DependentUpon>user-list.component.ts</DependentUpon>
+    </None>
+    <None Update="ClientApp\app\admin\user-list.component.spec.ts">
+      <DependentUpon>user-list.component.ts</DependentUpon>
+    </None>
+    <None Update="ClientApp\app\admin\admin.component.html">
+      <DependentUpon>admin.component.ts</DependentUpon>
+    </None>
+    <None Update="ClientApp\app\admin\admin.component.scss">
+      <DependentUpon>admin.component.ts</DependentUpon>
+    </None>
+    <None Update="ClientApp\app\admin\admin.component.spec.ts">
+      <DependentUpon>admin.component.ts</DependentUpon>
+    </None>
+    <None Update="ClientApp\app\app.component.html">
+      <DependentUpon>app.component.ts</DependentUpon>
+    </None>
+    <None Update="ClientApp\app\app.component.scss">
+      <DependentUpon>app.component.ts</DependentUpon>
+    </None>
+    <None Update="ClientApp\app\app.component.spec.ts">
+      <DependentUpon>app.component.ts</DependentUpon>
+    </None>
+    <None Update="ClientApp\app\components\about\about.component.html">
+      <DependentUpon>about.component.ts</DependentUpon>
+    </None>
+    <None Update="ClientApp\app\components\about\about.component.scss">
+      <DependentUpon>about.component.ts</DependentUpon>
+    </None>
+    <None Update="ClientApp\app\components\controls\add-task-dialog.component.html">
+      <DependentUpon>add-task-dialog.component.ts</DependentUpon>
+    </None>
+    <None Update="ClientApp\app\components\controls\add-task-dialog.component.scss">
+      <DependentUpon>add-task-dialog.component.ts</DependentUpon>
+    </None>
+    <None Update="ClientApp\app\components\controls\banner-demo.component.html">
+      <DependentUpon>banner-demo.component.ts</DependentUpon>
+    </None>
+    <None Update="ClientApp\app\components\controls\banner-demo.component.scss">
+      <DependentUpon>banner-demo.component.ts</DependentUpon>
+    </None>
+    <None Update="ClientApp\app\components\controls\notifications-viewer.component.html">
+      <DependentUpon>notifications-viewer.component.ts</DependentUpon>
+    </None>
+    <None Update="ClientApp\app\components\controls\notifications-viewer.component.scss">
+      <DependentUpon>notifications-viewer.component.ts</DependentUpon>
+    </None>
+    <None Update="ClientApp\app\components\controls\statistics-demo.component.html">
+      <DependentUpon>statistics-demo.component.ts</DependentUpon>
+    </None>
+    <None Update="ClientApp\app\components\controls\statistics-demo.component.scss">
+      <DependentUpon>statistics-demo.component.ts</DependentUpon>
+    </None>
+    <None Update="ClientApp\app\components\controls\todo-demo.component.html">
+      <DependentUpon>todo-demo.component.ts</DependentUpon>
+    </None>
+    <None Update="ClientApp\app\components\controls\todo-demo.component.scss">
+      <DependentUpon>todo-demo.component.ts</DependentUpon>
+    </None>
+    <None Update="ClientApp\app\admin\user-editor.component.html">
+      <DependentUpon>user-editor.component.ts</DependentUpon>
+    </None>
+    <None Update="ClientApp\app\admin\user-editor.component.scss">
+      <DependentUpon>user-editor.component.ts</DependentUpon>
+    </None>
+    <None Update="ClientApp\app\components\customers\customers.component.html">
+      <DependentUpon>customers.component.ts</DependentUpon>
+    </None>
+    <None Update="ClientApp\app\components\customers\customers.component.scss">
+      <DependentUpon>customers.component.ts</DependentUpon>
+    </None>
+    <None Update="ClientApp\app\components\home\home.component.html">
+      <DependentUpon>home.component.ts</DependentUpon>
+    </None>
+    <None Update="ClientApp\app\components\home\home.component.scss">
+      <DependentUpon>home.component.ts</DependentUpon>
+    </None>
+    <None Update="ClientApp\app\components\login\login-control.component.html">
+      <DependentUpon>login-control.component.ts</DependentUpon>
+    </None>
+    <None Update="ClientApp\app\components\login\login-control.component.scss">
+      <DependentUpon>login-control.component.ts</DependentUpon>
+    </None>
+    <None Update="ClientApp\app\components\login\login-dialog.component.html">
+      <DependentUpon>login-dialog.component.ts</DependentUpon>
+    </None>
+    <None Update="ClientApp\app\components\login\login-dialog.component.scss">
+      <DependentUpon>login-dialog.component.ts</DependentUpon>
+    </None>
+    <None Update="ClientApp\app\components\login\login.component.html">
+      <DependentUpon>login.component.ts</DependentUpon>
+    </None>
+    <None Update="ClientApp\app\components\login\login.component.scss">
+      <DependentUpon>login.component.ts</DependentUpon>
+    </None>
+    <None Update="ClientApp\app\components\not-found\not-found.component.html">
+      <DependentUpon>not-found.component.ts</DependentUpon>
+    </None>
+    <None Update="ClientApp\app\components\not-found\not-found.component.scss">
+      <DependentUpon>not-found.component.ts</DependentUpon>
+    </None>
+    <None Update="ClientApp\app\components\orders\orders.component.html">
+      <DependentUpon>orders.component.ts</DependentUpon>
+    </None>
+    <None Update="ClientApp\app\components\orders\orders.component.scss">
+      <DependentUpon>orders.component.ts</DependentUpon>
+    </None>
+    <None Update="ClientApp\app\components\products\products.component.html">
+      <DependentUpon>products.component.ts</DependentUpon>
+    </None>
+    <None Update="ClientApp\app\components\products\products.component.scss">
+      <DependentUpon>products.component.ts</DependentUpon>
+    </None>
+    <None Update="ClientApp\app\settings\settings.component.html">
+      <DependentUpon>settings.component.ts</DependentUpon>
+    </None>
+    <None Update="ClientApp\app\settings\settings.component.scss">
+      <DependentUpon>settings.component.ts</DependentUpon>
+    </None>
+    <None Update="ClientApp\app\settings\user-preferences.component.html">
+      <DependentUpon>user-preferences.component.ts</DependentUpon>
+    </None>
+    <None Update="ClientApp\app\settings\user-preferences.component.scss">
+      <DependentUpon>user-preferences.component.ts</DependentUpon>
+    </None>
+    <None Update="ClientApp\app\shared\app-dialog.component.html">
+      <DependentUpon>app-dialog.component.ts</DependentUpon>
+    </None>
+    <None Update="ClientApp\app\shared\app-dialog.component.scss">
+      <DependentUpon>app-dialog.component.ts</DependentUpon>
+    </None>
+    <None Update="ClientApp\app\shared\footer.component.html">
+      <DependentUpon>footer.component.ts</DependentUpon>
+    </None>
+    <None Update="ClientApp\app\shared\footer.component.scss">
+      <DependentUpon>footer.component.ts</DependentUpon>
+    </None>
+    <None Update="ClientApp\app\shared\footer.component.spec.ts">
+      <DependentUpon>footer.component.ts</DependentUpon>
+    </None>
+    <None Update="ClientApp\app\shared\page-header.component.html">
+      <DependentUpon>page-header.component.ts</DependentUpon>
+    </None>
+    <None Update="ClientApp\app\shared\page-header.component.scss">
+      <DependentUpon>page-header.component.ts</DependentUpon>
+    </None>
+    <None Update="ClientApp\app\shared\theme-picker.component.html">
+      <DependentUpon>theme-picker.component.ts</DependentUpon>
+    </None>
+    <None Update="ClientApp\app\shared\theme-picker.component.scss">
+      <DependentUpon>theme-picker.component.ts</DependentUpon>
+    </None>
+    <None Update="ClientApp\app\shared\_footer.component-theme.scss">
+      <DependentUpon>footer.component.ts</DependentUpon>
+    </None>
+  </ItemGroup>
+
+
+
+
+  <ItemGroup>
+    <Folder Include="Logs\" />
+  </ItemGroup>
+
+</Project>

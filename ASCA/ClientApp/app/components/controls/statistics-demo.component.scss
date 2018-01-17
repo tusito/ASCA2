@@ -1,0 +1,43 @@
+﻿
+.chart-container {
+    display: block;
+}
+
+.table-container {
+}
+
+
+.refresh-btn {
+    margin-right: 10px;
+}
+
+.chart-type-container {
+    display: inline-block;
+}
+
+
+li.active2 {
+    background-color: #e8e8e8;
+}
+
+.table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.table > tbody > tr > td,
+.table > tbody > tr > th,
+.table > tfoot > tr > td,
+.table > tfoot > tr > th, 
+.table > thead > tr > td,
+.table > thead > tr > th {
+    padding: 8px;
+    line-height: 1.4285;
+    vertical-align: top;
+    border-top: 1px solid #ddd;
+}
+
+.table > thead:first-child > tr:first-child > td,
+.table > thead:first-child > tr:first-child > th {
+    border-top: 0;
+}
