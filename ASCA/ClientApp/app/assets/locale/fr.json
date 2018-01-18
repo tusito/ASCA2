@@ -1,4 +1,10 @@
 ﻿{
+  "paginator": {
+    "ItemsPerPageLabel": "Articles par page",
+    "NextPageLabel": "page suivante",
+    "PreviousPageLabel": "page précédente",
+    "OfLabel": "sur"
+  },
   "app": {
     "Welcome": "Bienvenue",
     "Notifications": "Notifications",
@@ -10,7 +16,10 @@
     "Products": "Les produits",
     "Orders": "Les ordres",
     "About": "À Propos",
-    "Logout": "Se Déconnecter"
+    "Logout": "Se Déconnecter",
+    "Login": "Login",
+    "SelectTheme": "Sélectionnez un thème!",
+    "Settings": "Paramètres"
   },
   "pageHeader": {
     "Dashboard": "Tableau de bord",
@@ -19,6 +28,7 @@
     "Orders": "Les ordres",
     "NotFound": "Pas trouvé",
     "About": "À Propos",
+
     "Settings": "Paramètres"
   },
   "home": {

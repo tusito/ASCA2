@@ -12,6 +12,8 @@ import { ThemeManager } from './theme-manager';
 import { AppTheme } from '../models/AppTheme';
 import { ConfigurationService } from '../services/configuration.service';
 
+import { TranslateModule } from "@ngx-translate/core";
+
 @Component({
     selector: 'app-theme-picker',
     templateUrl: 'theme-picker.component.html',
@@ -54,6 +56,7 @@ export class ThemePicker
         MatMenuModule,
         MatListModule,
         MatTooltipModule,
+        TranslateModule
     ],
     exports: [ThemePicker],
     declarations: [ThemePicker],

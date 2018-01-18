@@ -32,12 +32,12 @@
             </ng-container>
 
             <ng-container *ngIf="canManageUsers" matColumnDef="actions">
-                <mat-header-cell *matHeaderCellDef fxFlex="140px">
+                <mat-header-cell *matHeaderCellDef fxFlex="150px">
                     <button *ngIf="canAssignRoles" mat-button color="primary" matTooltip="{{'users.management.NewUser' | translate}}" (click)="editUser()">
                         <mat-icon class="mat-button-icon">person_add</mat-icon>{{'users.management.NewUser' | translate}}
                     </button>
                 </mat-header-cell>
-                <mat-cell *matCellDef="let user" fxFlex="140px">
+                <mat-cell *matCellDef="let user" fxFlex="150px">
                     <button mat-icon-button matTooltip="{{'users.management.Edit' | translate}}" (click)="editUser(user)">
                         <mat-icon>edit</mat-icon>
                     </button>

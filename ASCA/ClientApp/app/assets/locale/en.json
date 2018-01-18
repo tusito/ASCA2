@@ -1,4 +1,10 @@
 ﻿{
+  "paginator": {
+    "ItemsPerPageLabel": "items per page",
+    "NextPageLabel": "Next page",
+    "PreviousPageLabel": "previous page",
+    "OfLabel": "of"
+  },
   "app": {
     "Welcome": "Welcome",
     "Notifications": "Notifications",
@@ -9,7 +15,7 @@
     "ErrorMessage": "You have entered invalid or incomplete information. Please correct any errors and try again."
   },
   "mainMenu": {
-    "Home":  "Home",
+    "Home": "Home",
     "Appointments": "Appointments",
     "Customers": "Customers",
     "Products": "Products",
@@ -17,7 +23,8 @@
     "About": "About",
     "Logout": "Logout",
     "Login": "Login",
-    "Settings":  "Settings"
+    "SelectTheme": "Select a theme!",
+    "Settings": "Settings"
   },
   "pageHeader": {
     "Dashboard": "Dashboard",
@@ -64,6 +71,7 @@
     "ResetPreferencesHint": "Reset preferences to application defaults (local only)",
     "Language": "Language",
     "English": "English",
+    "Spanish": "Español",
     "French": "French",
     "German": "German",
     "Portuguese": "Portuguese",
@@ -184,7 +192,7 @@
     }
   },
   "commands": {
-    "Edit":  "Edit",
+    "Edit": "Edit",
     "Save": "Save",
     "Cancel": "Cancel",
     "Reset": "Reset",

@@ -45,7 +45,7 @@ export class AppTranslationService
     {
         let browserLang = this.getBrowserLanguage();
 
-        if (browserLang.match(/en|fr|de|ar|ko|pt/))
+        if (browserLang.match(/en|es|fr/))
         {
             this.changeLanguage(browserLang);
             return browserLang;
@@ -102,17 +102,9 @@ export class TranslateLanguageLoader implements TranslateLoader
             case "en":
                 return Observable.of(require("../assets/locale/en.json"));
             case "es":
-                return Observable.of(require("../assets/locale/en.json"));
+                return Observable.of(require("../assets/locale/es.json"));
             case "fr":
                 return Observable.of(require("../assets/locale/fr.json"));
-            case "de":
-                return Observable.of(require("../assets/locale/de.json"));
-            case "pt":
-                return Observable.of(require("../assets/locale/pt.json"));
-            case "ar":
-                return Observable.of(require("../assets/locale/ar.json"));
-            case "ko":
-                return Observable.of(require("../assets/locale/ko.json"));
             default:
         }
     }

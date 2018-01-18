@@ -37,12 +37,12 @@
             </ng-container>
 
             <ng-container matColumnDef="actions">
-                <mat-header-cell fxFlex="140px" *matHeaderCellDef>
+                <mat-header-cell fxFlex="150px" *matHeaderCellDef>
                     <button mat-button (click)="addTask()" color="primary">
                         <mat-icon class="mat-button-icon">add</mat-icon>{{'todoDemo.editor.AddTask' | translate}}
                     </button>
                 </mat-header-cell>
-                <mat-cell fxFlex="140px" *matCellDef="let task">
+                <mat-cell fxFlex="150px" *matCellDef="let task">
                     <button mat-icon-button matTooltip="{{'todoDemo.management.Important' | translate}}" (click)="task.isImportant = !task.isImportant">
                         <mat-icon color="accent">{{task.isImportant ? 'bookmark' : 'bookmark_outline'}}</mat-icon>
                     </button>

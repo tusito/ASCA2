@@ -16,7 +16,7 @@ export class NotificationEndpoint
         {
             "id": 1,
             "header": "20 New Products were added to your inventory by \"administrator\"",
-            "body": "20 new \"BMW M6\" were added to your stock by \"administrator\" on 5/28/2017 4:54:13 PM",
+            "body": "20 new \"BMW M6\" were added to your stock by \"administrator\" on 5/28/2018 4:54:13 PM",
             "isRead": true,
             "isPinned": true,
             "date": "2017-05-28T16:29:13.5877958"

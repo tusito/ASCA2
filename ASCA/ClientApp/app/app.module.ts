@@ -1,3 +1,4 @@
+
 // ===============================
 // roberto.garcia@transmaquila.com
 // www.transmaquila.com
@@ -49,6 +50,10 @@ import { StatisticsDemoComponent } from "./components/controls/statistics-demo.c
 import { NotificationsViewerComponent } from "./components/controls/notifications-viewer.component";
 import { AddTaskDialogComponent } from './components/controls/add-task-dialog.component';
 
+import { MatPaginatorIntl } from '@angular/material';
+import { CustomMatPaginatorIntl } from './shared/custom-mat-paginator-intl';
+
+
 @NgModule({
     imports: [
         SharedModule,
@@ -93,7 +98,11 @@ import { AddTaskDialogComponent } from './components/controls/add-task-dialog.co
         AccountService,
         AccountEndpoint,
         LocalStoreManager,
-        EndpointFactory
+        EndpointFactory,
+        {
+            provide: MatPaginatorIntl,
+            useClass: CustomMatPaginatorIntl
+        }
     ],
     entryComponents: [
         LoginDialogComponent,

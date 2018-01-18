@@ -77,7 +77,7 @@ export class AppComponent implements OnInit {
 
         storageManager.initialiseStorageSyncListener();
 
-        translationService.addLanguages(["en", "fr", "de", "pt", "ar", "ko"]);
+        translationService.addLanguages(["en", "es","fr"]);
         translationService.setDefaultLanguage('en');
 
         this.toastyConfig.theme = 'material';

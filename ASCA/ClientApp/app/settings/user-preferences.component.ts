@@ -36,13 +36,9 @@ export class UserPreferencesComponent
 {
     languages: LanguagePreference[] = [
         { name: 'English',    locale: 'en', isDefault: true },
-        { name: 'Spanish', locale: 'es', isDefault: false }
-        //,
-        //{ name: 'French',     locale: 'fr', isDefault: false },
-        //{ name: 'German',     locale: 'de', isDefault: false },
-        //{ name: 'Portuguese', locale: 'pt', isDefault: false },
-        //{ name: 'Arabic',     locale: 'ar', isDefault: false },
-        //{ name: 'Korean',     locale: 'kd', isDefault: false }
+        { name: 'Spanish',    locale: 'es', isDefault: false },
+        { name: 'French',     locale: 'fr', isDefault: false }
+
     ]
 
     homePages: PageInfo[] = [
