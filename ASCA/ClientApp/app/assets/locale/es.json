@@ -1,14 +1,25 @@
 ﻿{
+  "author": {
+    "Name": "Roberto Garcia Guerrero",
+    "Position": "Transmaquila Corporate IT Director"
+  },
   "paginator": {
     "ItemsPerPageLabel": "Elementos por página",
     "NextPageLabel": "página siguiente",
     "PreviousPageLabel": "página anterior",
-    "OfLabel" : "de"
+    "OfLabel": "de"
   },
   "app": {
     "Welcome": "Bienvenido",
     "Notifications": "Notificaciones",
-    "New": "nuevo"
+    "New": "Nuevo",
+    "About": {
+      "OurValues": "Nuestros Valores",
+      "Mission": "MISIÓN",
+      "MissionDetail": "Proveer una plataforma de fácil uso a fin de administrar las Cajas de Ahorro ASCA por sus siglas en inglés (Accumulating Savings and Credit Association)",
+      "Vision": "VISIÓN",
+      "VisionDetail": "Es nuestro deseo fomentar la inclusión de más personas a participar en esta plataforma hasta alcanzar millones de ellas"
+    }
   },
   "form": {
     "ErrorCaption": "Información faltante",
@@ -24,7 +35,14 @@
     "Logout": "Cerrar sesión",
     "Login": "Login",
     "SelectTheme": "¡Seleccione un Tema!",
-    "Settings": "Configuraciones"
+    "Settings": "Configuraciones",
+    "Admin": {
+      "Users": "Usuario",
+      "Roles": "Roles",
+      "People": "Personas",
+      "Companies": "Empresas",
+      "ASCA": "Cajas de Ahorro"
+    }
   },
   "pageHeader": {
     "Tablero": "Tablero",

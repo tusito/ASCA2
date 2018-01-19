@@ -12,6 +12,8 @@ import { ConfigurationService } from '../../services/configuration.service';
 import { Utilities } from '../../services/utilities';
 import { UserLogin } from '../../models/user-login.model';
 
+import { TranslateService } from '@ngx-translate/core';
+
 @Component({
     selector: "app-login-control",
     templateUrl: './login-control.component.html',
@@ -29,6 +31,7 @@ export class LoginControlComponent implements OnInit, OnDestroy {
     isModal = false;
 
     constructor(
+        private translate: TranslateService,
         private alertService: AlertService,
         private authService: AuthService,
         private configurations: ConfigurationService,
@@ -111,7 +114,7 @@ export class LoginControlComponent implements OnInit, OnDestroy {
                     else {
                         this.alertService.showMessage("Login", `Session for ${user.userName} restored!`, MessageSeverity.success);
                         setTimeout(() => {
-                            this.alertService.showStickyMessage("Session Restored", "Please try your last operation again", MessageSeverity.default);
+                            this.alertService.showStickyMessage(`${this.translate.instant('login.SessionRestored')};`, "Please try your last operation again", MessageSeverity.default);
                         }, 500);
 
                         this.closeModal();

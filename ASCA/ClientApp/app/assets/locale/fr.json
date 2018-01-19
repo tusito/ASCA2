@@ -1,4 +1,8 @@
 ﻿{
+  "author": {
+    "Name": "Roberto Garcia Guerrero",
+    "Position": "Transmaquila Corporate IT Director"
+  },
   "paginator": {
     "ItemsPerPageLabel": "Articles par page",
     "NextPageLabel": "page suivante",
@@ -8,7 +12,18 @@
   "app": {
     "Welcome": "Bienvenue",
     "Notifications": "Notifications",
-    "New": "Nouveau"
+    "New": "Nouveau",
+    "About": {
+      "OurValues": "Our Values",
+      "Mission": "MISSION",
+      "MissionDetail": "Provide a platform easy to use in order to facilitate to manage the ASCAs (Accumulating Savings and Credit Association)",
+      "Vision": "VISION",
+      "VisionDetail": "It is our desire to encourage to include more people to participate in this platform until reach out millions of them"
+    }
+  },
+  "form": {
+    "ErrorCaption": "Información faltante",
+    "ErrorMessage": "Ha introducido información invalida o incompleta. Por favor corrija cualquier error e intente de nuevo."
   },
   "mainMenu": {
     "Appointments": "Rendez-vous",
@@ -19,7 +34,14 @@
     "Logout": "Se Déconnecter",
     "Login": "Login",
     "SelectTheme": "Sélectionnez un thème!",
-    "Settings": "Paramètres"
+    "Settings": "Paramètres",
+    "Admin": {
+      "Users": "Utilisateur",
+      "Roles": "Rôles",
+      "People": "Les gens",
+      "Companies": "Entreprises",
+      "ASCA": "Caisses d'épargne"
+    }
   },
   "pageHeader": {
     "Dashboard": "Tableau de bord",
@@ -186,6 +208,13 @@
       "Description": "Description",
       "Important": "Marquer comme important",
       "AddTask": "Ajouter une tâche"
+    },
+    "commands": {
+      "Edit": "Editar",
+      "Save": "Guardar",
+      "Cancel": "Cancelar",
+      "Reset": "Reestablecer",
+      "Reload": "Recargar"
     }
   }
 }

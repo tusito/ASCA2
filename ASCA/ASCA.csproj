@@ -72,10 +72,6 @@
   </Target>
 
   <ItemGroup>
-    <None Remove="ClientApp\app\admin\people-list.ts" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Content Include="ClientApp\app\assets\locale\fr.json" />
     <Content Include="ClientApp\app\assets\locale\es.json" />
     <Content Include="ClientApp\app\assets\locale\en.json" />
@@ -281,13 +277,6 @@
 
   <ItemGroup>
     <Folder Include="Logs\" />
-  </ItemGroup>
-
-
-
-
-  <ItemGroup>
-    <TypeScriptCompile Include="ClientApp\app\admin\people-list.ts" />
   </ItemGroup>
 
 </Project>

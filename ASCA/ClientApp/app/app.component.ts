@@ -12,6 +12,7 @@ import { ToastyService, ToastyConfig, ToastOptions, ToastData } from 'ng2-toasty
 import { AlertService, AlertDialog, DialogType, AlertMessage, MessageSeverity } from './services/alert.service';
 import { NotificationService } from "./services/notification.service";
 import { AppTranslationService } from "./services/app-translation.service";
+import { TranslateService } from '@ngx-translate/core';
 import { AccountService } from './services/account.service';
 import { LocalStoreManager } from './services/local-store-manager.service';
 import { AppTitleService } from './services/app-title.service';
@@ -66,6 +67,7 @@ export class AppComponent implements OnInit {
         private appTitleService: AppTitleService,
         private authService: AuthService,
         private translationService: AppTranslationService,
+        private translate: TranslateService,
         public configurations: ConfigurationService,
         public router: Router,
         public dialog: MatDialog,
@@ -125,7 +127,7 @@ export class AppComponent implements OnInit {
 
             setTimeout(() => {
                 if (!this.isUserLoggedIn) {
-                    this.alertService.showMessage("Session Ended!", "", MessageSeverity.default);
+                    this.alertService.showMessage(`${this.translate.instant('login.SessionEnded')}!`, "", MessageSeverity.default);
                 }
             }, 500);
         });
