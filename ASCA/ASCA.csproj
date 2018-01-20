@@ -21,6 +21,7 @@
     <PackageReference Include="IdentityServer4.AspNetIdentity" Version="2.1.0" />
     <PackageReference Include="MailKit" Version="2.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.5" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.2" />
     <PackageReference Include="Serilog.Extensions.Logging.File" Version="1.1.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="1.1.0" />
   </ItemGroup>
@@ -72,6 +73,10 @@
   </Target>
 
   <ItemGroup>
+    <None Remove="ClientApp\app\models\person.model.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="ClientApp\app\assets\locale\fr.json" />
     <Content Include="ClientApp\app\assets\locale\es.json" />
     <Content Include="ClientApp\app\assets\locale\en.json" />
@@ -92,6 +97,15 @@
     </None>
     <None Update="ClientApp\app\admin\edit-user-dialog.component.scss">
       <DependentUpon>edit-user-dialog.component.ts</DependentUpon>
+    </None>
+    <None Update="ClientApp\app\admin\person-list.component.html">
+      <DependentUpon>person-list.component.ts</DependentUpon>
+    </None>
+    <None Update="ClientApp\app\admin\person-list.component.scss">
+      <DependentUpon>person-list.component.ts</DependentUpon>
+    </None>
+    <None Update="ClientApp\app\admin\person-list.component.spec.ts">
+      <DependentUpon>person-list.component.ts</DependentUpon>
     </None>
     <None Update="ClientApp\app\admin\role-editor.component-theme.scss">
       <DependentUpon>role-editor.component.ts</DependentUpon>
@@ -276,7 +290,15 @@
 
 
   <ItemGroup>
+    <Folder Include="ClientApp\app\components\Register\" />
     <Folder Include="Logs\" />
+  </ItemGroup>
+
+
+
+
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\app\models\person.model.ts" />
   </ItemGroup>
 
 </Project>

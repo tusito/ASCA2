@@ -3,7 +3,6 @@
 // www.transmaquila.com
 // ===============================
 
-using System;
 
 namespace DAL.Core
 {
@@ -30,6 +29,14 @@ namespace DAL.Core
         Home
     }
 
+
+
+    public enum EmailType
+    {
+        Personl,
+        Work,
+        Other
+    }
     public enum UniqueIdType
     {
         SSN,

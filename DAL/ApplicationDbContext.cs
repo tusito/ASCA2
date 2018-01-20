@@ -25,7 +25,11 @@ namespace DAL
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderDetail> OrderDetails { get; set; }
 
-
+        //ASCA classes
+        public DbSet<Person> People { get; set; }
+        public DbSet<Phone> Phones { get; set; }
+        public DbSet<Email> Emails { get; set; }
+        public DbSet<UniqueID> UniqueIDs { get; set; }
 
         public ApplicationDbContext(DbContextOptions options) : base(options)
         { }

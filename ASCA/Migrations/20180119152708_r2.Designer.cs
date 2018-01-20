@@ -12,9 +12,10 @@ using System;
 namespace ASCA.Pro.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180119152708_r2")]
+    partial class r2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -193,7 +194,7 @@ namespace ASCA.Pro.Migrations
 
                     b.HasIndex("PersonId");
 
-                    b.ToTable("Emails");
+                    b.ToTable("Email");
                 });
 
             modelBuilder.Entity("DAL.Models.Order", b =>

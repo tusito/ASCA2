@@ -1,4 +1,7 @@
 ﻿{
+  "login": {
+    "RememberMe": "¡Recordarme!"
+  },
   "author": {
     "Name": "Roberto Garcia Guerrero",
     "Position": "Transmaquila Corporate IT Director"
@@ -45,7 +48,7 @@
     }
   },
   "pageHeader": {
-    "Tablero": "Tablero",
+    "Dashboard": "Tablero",
     "Customers": "Clientes",
     "Products": "Productos",
     "Orders": "Ordenes",
@@ -53,7 +56,8 @@
     "About": "Acerca de",
     "Settings": "Configuraciones",
     "Users": "Administración de usuarios",
-    "Roles": "Administración de roles"
+    "Roles": "Administración de roles",
+    "People": "Administración de personas"
   },
   "home": {
     "NoWidgets1": "You have no widgets displayed. Goto",

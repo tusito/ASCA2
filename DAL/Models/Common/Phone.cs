@@ -3,9 +3,6 @@
 // Email:  roberto.garcia@transmaquila.com
 // ======================================
 
-using System;
-using System.Collections.Generic;
-using System.Text;
 using DAL.Core;
 
 namespace DAL.Models

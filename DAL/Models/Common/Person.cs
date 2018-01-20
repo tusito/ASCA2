@@ -3,11 +3,9 @@
 // Email:  roberto.garcia@transmaquila.com
 // ======================================
 
+using DAL.Core;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
-using DAL.Core;
 
 namespace DAL.Models
 {
@@ -19,7 +17,8 @@ namespace DAL.Models
         public string Surname { get; set; }
         public string MothersMaidenName { get; set; }
         public Gender Gender { get; set; }
-        public ICollection<Phone> Phones { get; set; }
-        public ICollection<UniqueID> UniqueIDs { get; set; }
+        public virtual ICollection<Phone> Phones { get; set; }
+        public virtual ICollection<Email> Emails { get; set; }
+        public virtual ICollection<UniqueID> UniqueIDs { get; set; }
     }
 }

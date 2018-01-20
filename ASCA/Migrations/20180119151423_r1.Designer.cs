@@ -12,9 +12,10 @@ using System;
 namespace ASCA.Pro.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180119151423_r1")]
+    partial class r1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -164,36 +165,6 @@ namespace ASCA.Pro.Migrations
                     b.HasIndex("Name");
 
                     b.ToTable("AppCustomers");
-                });
-
-            modelBuilder.Entity("DAL.Models.Email", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("CreatedBy")
-                        .HasMaxLength(256);
-
-                    b.Property<DateTime>("CreatedDate");
-
-                    b.Property<bool>("IsPrimary");
-
-                    b.Property<string>("Number");
-
-                    b.Property<int?>("PersonId");
-
-                    b.Property<int>("PhoneType");
-
-                    b.Property<string>("UpdatedBy")
-                        .HasMaxLength(256);
-
-                    b.Property<DateTime>("UpdatedDate");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PersonId");
-
-                    b.ToTable("Emails");
                 });
 
             modelBuilder.Entity("DAL.Models.Order", b =>
@@ -525,13 +496,6 @@ namespace ASCA.Pro.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
-                });
-
-            modelBuilder.Entity("DAL.Models.Email", b =>
-                {
-                    b.HasOne("DAL.Models.Person")
-                        .WithMany("Emails")
-                        .HasForeignKey("PersonId");
                 });
 
             modelBuilder.Entity("DAL.Models.Order", b =>
