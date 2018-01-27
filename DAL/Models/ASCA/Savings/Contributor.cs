@@ -3,10 +3,6 @@
 // Email:  roberto.garcia@transmaquila.com
 // ======================================
 
-using System;
-using System.Collections.Generic;
-using System.Text;
-
 namespace DAL.Models
 {
     public class Contributor : AuditableEntity

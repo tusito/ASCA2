@@ -3,17 +3,14 @@
 // www.transmaquila.com
 // ===============================
 
+using DAL.Core;
+using DAL.Core.Interfaces;
 using DAL.Models;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using DAL.Core;
-using DAL.Core.Interfaces;
 
 namespace DAL
 {

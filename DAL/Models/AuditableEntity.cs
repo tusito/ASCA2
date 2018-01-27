@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.ComponentModel.DataAnnotations;
 using DAL.Models.Interfaces;
+using DAL.Core;
 
 namespace DAL.Models
 {
@@ -19,5 +20,6 @@ namespace DAL.Models
         public string UpdatedBy { get; set; }
         public DateTime UpdatedDate { get; set; }
         public DateTime CreatedDate { get; set; }
+        public Status Status { get; set; }
     }
 }

@@ -9,11 +9,11 @@ using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.EntityFrameworkCore.Storage.Internal;
 using System;
 
-namespace ASCA.Pro.Migrations
+namespace ASCA.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20180119153002_r4")]
-    partial class r4
+    [Migration("20180126213926_r7")]
+    partial class r7
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,6 +21,115 @@ namespace ASCA.Pro.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.0.1-rtm-125")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("DAL.Models.Account", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int?>("ASCAId");
+
+                    b.Property<string>("AccountNo");
+
+                    b.Property<int?>("AccountTypeId");
+
+                    b.Property<decimal>("Balance");
+
+                    b.Property<int?>("ContributorId");
+
+                    b.Property<string>("CreatedBy")
+                        .HasMaxLength(256);
+
+                    b.Property<DateTime>("CreatedDate");
+
+                    b.Property<int>("Status");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasMaxLength(256);
+
+                    b.Property<DateTime>("UpdatedDate");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ASCAId");
+
+                    b.HasIndex("AccountTypeId");
+
+                    b.HasIndex("ContributorId");
+
+                    b.ToTable("Accounts","ASCA");
+                });
+
+            modelBuilder.Entity("DAL.Models.AccountType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("CreatedBy")
+                        .HasMaxLength(256);
+
+                    b.Property<DateTime>("CreatedDate");
+
+                    b.Property<string>("Description");
+
+                    b.Property<string>("Name");
+
+                    b.Property<int>("Status");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasMaxLength(256);
+
+                    b.Property<DateTime>("UpdatedDate");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AccountTypes","ASCA");
+                });
+
+            modelBuilder.Entity("DAL.Models.Address", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Address1");
+
+                    b.Property<string>("Address2");
+
+                    b.Property<int?>("CityId");
+
+                    b.Property<int?>("CountryId");
+
+                    b.Property<string>("CreatedBy")
+                        .HasMaxLength(256);
+
+                    b.Property<DateTime>("CreatedDate");
+
+                    b.Property<int>("PersonId");
+
+                    b.Property<int?>("StateId");
+
+                    b.Property<int>("Status");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasMaxLength(256);
+
+                    b.Property<DateTime>("UpdatedDate");
+
+                    b.Property<int>("Zipcode");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CityId");
+
+                    b.HasIndex("CountryId");
+
+                    b.HasIndex("PersonId")
+                        .IsUnique();
+
+                    b.HasIndex("StateId");
+
+                    b.ToTable("Addresses","ASCA");
+                });
 
             modelBuilder.Entity("DAL.Models.ApplicationRole", b =>
                 {
@@ -123,6 +232,218 @@ namespace ASCA.Pro.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
+            modelBuilder.Entity("DAL.Models.ASCA", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("CreatedBy")
+                        .HasMaxLength(256);
+
+                    b.Property<DateTime>("CreatedDate");
+
+                    b.Property<int?>("CurrencyId");
+
+                    b.Property<DateTime>("EndDate");
+
+                    b.Property<string>("Name");
+
+                    b.Property<DateTime>("StartDate");
+
+                    b.Property<int>("Status");
+
+                    b.Property<int?>("TreasurerId");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasMaxLength(256);
+
+                    b.Property<DateTime>("UpdatedDate");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CurrencyId");
+
+                    b.HasIndex("TreasurerId");
+
+                    b.ToTable("ASCAs","ASCA");
+                });
+
+            modelBuilder.Entity("DAL.Models.City", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int?>("CountryId");
+
+                    b.Property<string>("CreatedBy")
+                        .HasMaxLength(256);
+
+                    b.Property<DateTime>("CreatedDate");
+
+                    b.Property<string>("Name");
+
+                    b.Property<int?>("StateId");
+
+                    b.Property<int>("Status");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasMaxLength(256);
+
+                    b.Property<DateTime>("UpdatedDate");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CountryId");
+
+                    b.HasIndex("StateId");
+
+                    b.ToTable("Cities","ASCA");
+                });
+
+            modelBuilder.Entity("DAL.Models.Company", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Address");
+
+                    b.Property<int?>("CountryId");
+
+                    b.Property<string>("CreatedBy")
+                        .HasMaxLength(256);
+
+                    b.Property<DateTime>("CreatedDate");
+
+                    b.Property<string>("Name");
+
+                    b.Property<int>("Status");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasMaxLength(256);
+
+                    b.Property<DateTime>("UpdatedDate");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CountryId");
+
+                    b.ToTable("Companies","ASCA");
+                });
+
+            modelBuilder.Entity("DAL.Models.Company_PayReollRep", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int?>("CompanyId");
+
+                    b.Property<string>("CreatedBy")
+                        .HasMaxLength(256);
+
+                    b.Property<DateTime>("CreatedDate");
+
+                    b.Property<int?>("PayRollRepId");
+
+                    b.Property<int>("Status");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasMaxLength(256);
+
+                    b.Property<DateTime>("UpdatedDate");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CompanyId");
+
+                    b.HasIndex("PayRollRepId");
+
+                    b.ToTable("Company_PayRollRep","ASCA");
+                });
+
+            modelBuilder.Entity("DAL.Models.Contributor", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int?>("ASCAId");
+
+                    b.Property<string>("CreatedBy")
+                        .HasMaxLength(256);
+
+                    b.Property<DateTime>("CreatedDate");
+
+                    b.Property<int?>("PersonId");
+
+                    b.Property<int>("Status");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasMaxLength(256);
+
+                    b.Property<DateTime>("UpdatedDate");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ASCAId");
+
+                    b.HasIndex("PersonId");
+
+                    b.ToTable("Contributors","ASCA");
+                });
+
+            modelBuilder.Entity("DAL.Models.Country", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("CreatedBy")
+                        .HasMaxLength(256);
+
+                    b.Property<DateTime>("CreatedDate");
+
+                    b.Property<string>("Name");
+
+                    b.Property<int>("Status");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasMaxLength(256);
+
+                    b.Property<DateTime>("UpdatedDate");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Countries","ASCA");
+                });
+
+            modelBuilder.Entity("DAL.Models.Currency", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int?>("CountryId");
+
+                    b.Property<string>("CreatedBy")
+                        .HasMaxLength(256);
+
+                    b.Property<DateTime>("CreatedDate");
+
+                    b.Property<string>("Name");
+
+                    b.Property<int>("Status");
+
+                    b.Property<string>("Symbol");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasMaxLength(256);
+
+                    b.Property<DateTime>("UpdatedDate");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CountryId");
+
+                    b.ToTable("Currencies","ASCA");
+                });
+
             modelBuilder.Entity("DAL.Models.Customer", b =>
                 {
                     b.Property<int>("Id")
@@ -155,6 +476,8 @@ namespace ASCA.Pro.Migrations
                         .HasMaxLength(30)
                         .IsUnicode(false);
 
+                    b.Property<int>("Status");
+
                     b.Property<string>("UpdatedBy")
                         .HasMaxLength(256);
 
@@ -165,6 +488,34 @@ namespace ASCA.Pro.Migrations
                     b.HasIndex("Name");
 
                     b.ToTable("AppCustomers");
+                });
+
+            modelBuilder.Entity("DAL.Models.Department", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int?>("CompanyId");
+
+                    b.Property<string>("CreatedBy")
+                        .HasMaxLength(256);
+
+                    b.Property<DateTime>("CreatedDate");
+
+                    b.Property<string>("Name");
+
+                    b.Property<int>("Status");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasMaxLength(256);
+
+                    b.Property<DateTime>("UpdatedDate");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CompanyId");
+
+                    b.ToTable("Departments","ASCA");
                 });
 
             modelBuilder.Entity("DAL.Models.Email", b =>
@@ -179,22 +530,58 @@ namespace ASCA.Pro.Migrations
 
                     b.Property<bool>("IsPrimary");
 
-                    b.Property<string>("Number");
-
                     b.Property<int?>("PersonId");
 
                     b.Property<int>("PhoneType");
+
+                    b.Property<int>("Status");
 
                     b.Property<string>("UpdatedBy")
                         .HasMaxLength(256);
 
                     b.Property<DateTime>("UpdatedDate");
 
+                    b.Property<string>("mail");
+
                     b.HasKey("Id");
 
                     b.HasIndex("PersonId");
 
-                    b.ToTable("Emails");
+                    b.ToTable("Emails","ASCA");
+                });
+
+            modelBuilder.Entity("DAL.Models.Employee", b =>
+                {
+                    b.Property<string>("EmployeeId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int?>("CompanyId");
+
+                    b.Property<string>("CreatedBy")
+                        .HasMaxLength(256);
+
+                    b.Property<DateTime>("CreatedDate");
+
+                    b.Property<int?>("DepartmentId");
+
+                    b.Property<int?>("PersonId");
+
+                    b.Property<int>("Status");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasMaxLength(256);
+
+                    b.Property<DateTime>("UpdatedDate");
+
+                    b.HasKey("EmployeeId");
+
+                    b.HasIndex("CompanyId");
+
+                    b.HasIndex("DepartmentId");
+
+                    b.HasIndex("PersonId");
+
+                    b.ToTable("Employees","ASCA");
                 });
 
             modelBuilder.Entity("DAL.Models.Order", b =>
@@ -219,6 +606,8 @@ namespace ASCA.Pro.Migrations
                     b.Property<DateTime>("DateModified");
 
                     b.Property<decimal>("Discount");
+
+                    b.Property<int>("Status");
 
                     b.Property<string>("UpdatedBy")
                         .HasMaxLength(256);
@@ -251,6 +640,8 @@ namespace ASCA.Pro.Migrations
                     b.Property<int>("ProductId");
 
                     b.Property<int>("Quantity");
+
+                    b.Property<int>("Status");
 
                     b.Property<decimal>("UnitPrice");
 
@@ -286,6 +677,8 @@ namespace ASCA.Pro.Migrations
 
                     b.Property<string>("Name");
 
+                    b.Property<int>("Status");
+
                     b.Property<string>("Surname");
 
                     b.Property<string>("UpdatedBy")
@@ -295,7 +688,7 @@ namespace ASCA.Pro.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("People");
+                    b.ToTable("People","ASCA");
                 });
 
             modelBuilder.Entity("DAL.Models.Phone", b =>
@@ -316,6 +709,8 @@ namespace ASCA.Pro.Migrations
 
                     b.Property<int>("PhoneType");
 
+                    b.Property<int>("Status");
+
                     b.Property<string>("UpdatedBy")
                         .HasMaxLength(256);
 
@@ -325,7 +720,7 @@ namespace ASCA.Pro.Migrations
 
                     b.HasIndex("PersonId");
 
-                    b.ToTable("Phones");
+                    b.ToTable("Phones","ASCA");
                 });
 
             modelBuilder.Entity("DAL.Models.Product", b =>
@@ -364,6 +759,8 @@ namespace ASCA.Pro.Migrations
                     b.Property<int>("ProductCategoryId");
 
                     b.Property<decimal>("SellingPrice");
+
+                    b.Property<int>("Status");
 
                     b.Property<int>("UnitsInStock");
 
@@ -406,6 +803,8 @@ namespace ASCA.Pro.Migrations
                         .IsRequired()
                         .HasMaxLength(100);
 
+                    b.Property<int>("Status");
+
                     b.Property<string>("UpdatedBy")
                         .HasMaxLength(256);
 
@@ -414,6 +813,66 @@ namespace ASCA.Pro.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("AppProductCategories");
+                });
+
+            modelBuilder.Entity("DAL.Models.Relationship", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("CreatedBy")
+                        .HasMaxLength(256);
+
+                    b.Property<DateTime>("CreatedDate");
+
+                    b.Property<int?>("Person1Id");
+
+                    b.Property<int?>("Person2Id");
+
+                    b.Property<int>("RleationshipType");
+
+                    b.Property<int>("Status");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasMaxLength(256);
+
+                    b.Property<DateTime>("UpdatedDate");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Person1Id");
+
+                    b.HasIndex("Person2Id");
+
+                    b.ToTable("Relationships","ASCA");
+                });
+
+            modelBuilder.Entity("DAL.Models.State", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int?>("CountryId");
+
+                    b.Property<string>("CreatedBy")
+                        .HasMaxLength(256);
+
+                    b.Property<DateTime>("CreatedDate");
+
+                    b.Property<string>("Name");
+
+                    b.Property<int>("Status");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasMaxLength(256);
+
+                    b.Property<DateTime>("UpdatedDate");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CountryId");
+
+                    b.ToTable("States","ASCA");
                 });
 
             modelBuilder.Entity("DAL.Models.UniqueID", b =>
@@ -430,6 +889,8 @@ namespace ASCA.Pro.Migrations
 
                     b.Property<int?>("PersonId");
 
+                    b.Property<int>("Status");
+
                     b.Property<int>("Type");
 
                     b.Property<string>("UpdatedBy")
@@ -441,7 +902,7 @@ namespace ASCA.Pro.Migrations
 
                     b.HasIndex("PersonId");
 
-                    b.ToTable("UniqueIDs");
+                    b.ToTable("UniqueIDs","ASCA");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -528,10 +989,125 @@ namespace ASCA.Pro.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("DAL.Models.Account", b =>
+                {
+                    b.HasOne("DAL.Models.ASCA", "ASCA")
+                        .WithMany()
+                        .HasForeignKey("ASCAId");
+
+                    b.HasOne("DAL.Models.AccountType", "AccountType")
+                        .WithMany()
+                        .HasForeignKey("AccountTypeId");
+
+                    b.HasOne("DAL.Models.Contributor", "Contributor")
+                        .WithMany()
+                        .HasForeignKey("ContributorId");
+                });
+
+            modelBuilder.Entity("DAL.Models.Address", b =>
+                {
+                    b.HasOne("DAL.Models.City", "City")
+                        .WithMany()
+                        .HasForeignKey("CityId");
+
+                    b.HasOne("DAL.Models.Country", "Country")
+                        .WithMany()
+                        .HasForeignKey("CountryId");
+
+                    b.HasOne("DAL.Models.Person", "Person")
+                        .WithOne("Address")
+                        .HasForeignKey("DAL.Models.Address", "PersonId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("DAL.Models.State", "State")
+                        .WithMany()
+                        .HasForeignKey("StateId");
+                });
+
+            modelBuilder.Entity("DAL.Models.ASCA", b =>
+                {
+                    b.HasOne("DAL.Models.Currency", "Currency")
+                        .WithMany()
+                        .HasForeignKey("CurrencyId");
+
+                    b.HasOne("DAL.Models.Person", "Treasurer")
+                        .WithMany()
+                        .HasForeignKey("TreasurerId");
+                });
+
+            modelBuilder.Entity("DAL.Models.City", b =>
+                {
+                    b.HasOne("DAL.Models.Country", "Country")
+                        .WithMany()
+                        .HasForeignKey("CountryId");
+
+                    b.HasOne("DAL.Models.State", "State")
+                        .WithMany("Cities")
+                        .HasForeignKey("StateId");
+                });
+
+            modelBuilder.Entity("DAL.Models.Company", b =>
+                {
+                    b.HasOne("DAL.Models.Country", "Country")
+                        .WithMany()
+                        .HasForeignKey("CountryId");
+                });
+
+            modelBuilder.Entity("DAL.Models.Company_PayReollRep", b =>
+                {
+                    b.HasOne("DAL.Models.Company", "Company")
+                        .WithMany()
+                        .HasForeignKey("CompanyId");
+
+                    b.HasOne("DAL.Models.Person", "PayRollRep")
+                        .WithMany()
+                        .HasForeignKey("PayRollRepId");
+                });
+
+            modelBuilder.Entity("DAL.Models.Contributor", b =>
+                {
+                    b.HasOne("DAL.Models.ASCA")
+                        .WithMany("Contributors")
+                        .HasForeignKey("ASCAId");
+
+                    b.HasOne("DAL.Models.Person", "Person")
+                        .WithMany()
+                        .HasForeignKey("PersonId");
+                });
+
+            modelBuilder.Entity("DAL.Models.Currency", b =>
+                {
+                    b.HasOne("DAL.Models.Country", "Country")
+                        .WithMany()
+                        .HasForeignKey("CountryId");
+                });
+
+            modelBuilder.Entity("DAL.Models.Department", b =>
+                {
+                    b.HasOne("DAL.Models.Company", "Company")
+                        .WithMany()
+                        .HasForeignKey("CompanyId");
+                });
+
             modelBuilder.Entity("DAL.Models.Email", b =>
                 {
                     b.HasOne("DAL.Models.Person")
                         .WithMany("Emails")
+                        .HasForeignKey("PersonId");
+                });
+
+            modelBuilder.Entity("DAL.Models.Employee", b =>
+                {
+                    b.HasOne("DAL.Models.Company", "Company")
+                        .WithMany("Employees")
+                        .HasForeignKey("CompanyId");
+
+                    b.HasOne("DAL.Models.Department", "Department")
+                        .WithMany()
+                        .HasForeignKey("DepartmentId");
+
+                    b.HasOne("DAL.Models.Person", "Person")
+                        .WithMany()
                         .HasForeignKey("PersonId");
                 });
 
@@ -578,6 +1154,24 @@ namespace ASCA.Pro.Migrations
                         .WithMany("Products")
                         .HasForeignKey("ProductCategoryId")
                         .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("DAL.Models.Relationship", b =>
+                {
+                    b.HasOne("DAL.Models.Person", "Person1")
+                        .WithMany()
+                        .HasForeignKey("Person1Id");
+
+                    b.HasOne("DAL.Models.Person", "Person2")
+                        .WithMany()
+                        .HasForeignKey("Person2Id");
+                });
+
+            modelBuilder.Entity("DAL.Models.State", b =>
+                {
+                    b.HasOne("DAL.Models.Country", "Country")
+                        .WithMany("States")
+                        .HasForeignKey("CountryId");
                 });
 
             modelBuilder.Entity("DAL.Models.UniqueID", b =>

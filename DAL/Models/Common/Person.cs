@@ -20,5 +20,6 @@ namespace DAL.Models
         public virtual ICollection<Phone> Phones { get; set; }
         public virtual ICollection<Email> Emails { get; set; }
         public virtual ICollection<UniqueID> UniqueIDs { get; set; }
+        public Address Address { get; set; }
     }
 }

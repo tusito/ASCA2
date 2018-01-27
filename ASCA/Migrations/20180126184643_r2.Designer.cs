@@ -13,9 +13,10 @@ using System;
 namespace ASCA.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180126184643_r2")]
+    partial class r2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -905,7 +906,7 @@ namespace ASCA.Migrations
 
                     b.HasIndex("AccountId");
 
-                    b.ToTable("Transactions","ASCA");
+                    b.ToTable("Transaction");
 
                     b.HasDiscriminator<string>("Discriminator").HasValue("Transaction");
                 });
@@ -1035,37 +1036,6 @@ namespace ASCA.Migrations
                     b.ToTable("Deposits","ASCA");
 
                     b.HasDiscriminator().HasValue("Deposit");
-                });
-
-            modelBuilder.Entity("DAL.Models.Transference", b =>
-                {
-                    b.HasBaseType("DAL.Models.Transaction");
-
-                    b.Property<int?>("FromAccountId");
-
-                    b.Property<int?>("ToAccountId");
-
-                    b.HasIndex("FromAccountId");
-
-                    b.HasIndex("ToAccountId");
-
-                    b.ToTable("Transferences","ASCA");
-
-                    b.HasDiscriminator().HasValue("Transference");
-                });
-
-            modelBuilder.Entity("DAL.Models.Withdrawal", b =>
-                {
-                    b.HasBaseType("DAL.Models.Transaction");
-
-                    b.Property<int?>("AccountId1")
-                        .HasColumnName("Withdrawal_AccountId1");
-
-                    b.HasIndex("AccountId1");
-
-                    b.ToTable("Withdrawals","ASCA");
-
-                    b.HasDiscriminator().HasValue("Withdrawal");
                 });
 
             modelBuilder.Entity("DAL.Models.Account", b =>
@@ -1313,24 +1283,6 @@ namespace ASCA.Migrations
                 });
 
             modelBuilder.Entity("DAL.Models.Deposit", b =>
-                {
-                    b.HasOne("DAL.Models.Account", "Account")
-                        .WithMany()
-                        .HasForeignKey("AccountId1");
-                });
-
-            modelBuilder.Entity("DAL.Models.Transference", b =>
-                {
-                    b.HasOne("DAL.Models.Account", "FromAccount")
-                        .WithMany()
-                        .HasForeignKey("FromAccountId");
-
-                    b.HasOne("DAL.Models.Account", "ToAccount")
-                        .WithMany()
-                        .HasForeignKey("ToAccountId");
-                });
-
-            modelBuilder.Entity("DAL.Models.Withdrawal", b =>
                 {
                     b.HasOne("DAL.Models.Account", "Account")
                         .WithMany()

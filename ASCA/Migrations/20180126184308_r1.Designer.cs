@@ -13,9 +13,10 @@ using System;
 namespace ASCA.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180126184308_r1")]
+    partial class r1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -905,7 +906,7 @@ namespace ASCA.Migrations
 
                     b.HasIndex("AccountId");
 
-                    b.ToTable("Transactions","ASCA");
+                    b.ToTable("Transaction");
 
                     b.HasDiscriminator<string>("Discriminator").HasValue("Transaction");
                 });

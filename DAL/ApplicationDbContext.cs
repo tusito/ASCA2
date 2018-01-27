@@ -25,19 +25,48 @@ namespace DAL
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderDetail> OrderDetails { get; set; }
 
-        //ASCA classes
+        //ASCA classes 
+
+        public DbSet<Account> Accounts { get; set; }
+        public DbSet<Contributor> Contributors { get; set; }
+        public DbSet<AccountType> AccountTypes { get; set; }
+        public DbSet<ASCA> ASCAs { get; set; }
+        public DbSet<Relationship> Relationships { get; set; }
+
+        //public DbSet<Transaction> Transactions { get; set; }
+        public DbSet<Deposit> Deposits { get; set; }
+        //public DbSet<Withdrawal> Withdraws { get; set; }
+        //public DbSet<Transference> Transferences { get; set; }
+
+        //ASCA classes Common
+        public DbSet<Address> Addresses { get; set; }
+        public DbSet<City> Cities { get; set; }
+        public DbSet<Company> Companies { get; set; }
+        public DbSet<Company_PayReollRep> Company_PayRollRep { get; set; }
+        public DbSet<Country> Countries { get; set; }
+        public DbSet<Currency> Currencies { get; set; }
+        public DbSet<Department> Departments { get; set; }
+        public DbSet<Email> Emails { get; set; }
+        public DbSet<Employee> Employees { get; set; } 
         public DbSet<Person> People { get; set; }
         public DbSet<Phone> Phones { get; set; }
-        public DbSet<Email> Emails { get; set; }
+        public DbSet<State> States { get; set; }
         public DbSet<UniqueID> UniqueIDs { get; set; }
 
+
         public ApplicationDbContext(DbContextOptions options) : base(options)
-        { }
+        {
+            
+
+
+        }
 
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
+            //builder.HasDefaultSchema("Common");
+
 
             builder.Entity<ApplicationUser>().HasMany(u => u.Claims).WithOne().HasForeignKey(c => c.UserId).IsRequired().OnDelete(DeleteBehavior.Cascade);
             builder.Entity<ApplicationUser>().HasMany(u => u.Roles).WithOne().HasForeignKey(r => r.UserId).IsRequired().OnDelete(DeleteBehavior.Cascade);
@@ -67,7 +96,46 @@ namespace DAL
             builder.Entity<Order>().ToTable($"App{nameof(this.Orders)}");
 
             builder.Entity<OrderDetail>().ToTable($"App{nameof(this.OrderDetails)}");
+
+            //builder.Entity<Person>().HasOne(a => a.Address).WithOne(b => b.Person).HasForeignKey<Address>(b => b.Person);
+            //builder.Entity<Address>().HasOne(a => a.Person).WithOne(b => b.Address).HasForeignKey<Person>(b => b.Address);
+
+            //ASCA Entities
+            builder.Entity<Account>().ToTable("Accounts", "ASCA");
+            builder.Entity<Contributor>().ToTable("Contributors", "ASCA");
+            builder.Entity<AccountType>().ToTable("AccountTypes", "ASCA");
+            builder.Entity<ASCA>().ToTable("ASCAs", "ASCA");
+            builder.Entity<Relationship>().ToTable("Relationships", "ASCA");
+
+            //builder.Entity<Transaction>().ToTable("Transactions", "ASCA");
+            builder.Entity<Deposit>().ToTable("Deposits", "ASCA");
+            //builder.Entity<Withdrawal>().ToTable("Withdrawals", "ASCA");
+            //builder.Entity<Transference>().ToTable("Transferences", "ASCA");
+
+            //Common Entities
+            builder.Entity<Person>().HasOne(a => a.Address).WithOne(b => b.Person);
+            builder.Entity<Address>().HasOne(a => a.Person).WithOne(b => b.Address).HasForeignKey<Address>(p => p.PersonId).IsRequired();
+
+            builder.Entity<Address>().ToTable("Addresses", "ASCA");
+            builder.Entity<City>().ToTable("Cities", "ASCA");
+            builder.Entity<Company>().ToTable("Companies", "ASCA");
+            builder.Entity<Company_PayReollRep>().ToTable("Company_PayRollRep", "ASCA");
+            builder.Entity<Country>().ToTable("Countries", "ASCA");
+            builder.Entity<Currency>().ToTable("Currencies", "ASCA");
+            builder.Entity<Department>().ToTable("Departments", "ASCA");
+            builder.Entity<Email>().ToTable("Emails", "ASCA");
+            builder.Entity<Employee>().ToTable("Employees", "ASCA");
+            builder.Entity<Person>().ToTable("People", "ASCA");
+            builder.Entity<Phone>().ToTable("Phones", "ASCA");
+            builder.Entity<State>().ToTable("States", "ASCA");
+            builder.Entity<UniqueID>().ToTable("UniqueIDs", "ASCA");
+
+
+
         }
+
+
+
 
 
 

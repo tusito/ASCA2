@@ -57,4 +57,13 @@ namespace DAL.Core
         Active,
         Inactive
     }
+
+    public enum CommandState
+    {
+        Unprocessed,
+        ExecuteFailed,
+        ExecuteSucceeded,
+        UndoFailed,
+        UndoSucceeded
+    }
 }
