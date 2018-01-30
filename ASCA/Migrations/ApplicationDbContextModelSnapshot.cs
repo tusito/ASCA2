@@ -7,7 +7,6 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.EntityFrameworkCore.Storage.Internal;
-using Microsoft.EntityFrameworkCore.ValueGeneration;
 using System;
 
 namespace ASCA.Migrations
@@ -27,20 +26,22 @@ namespace ASCA.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int?>("ASCAId");
-
                     b.Property<string>("AccountNo");
 
-                    b.Property<int?>("AccountTypeId");
+                    b.Property<int>("AccountType");
 
-                    b.Property<decimal>("Balance");
-
-                    b.Property<int?>("ContributorId");
+                    b.Property<DateTime?>("ClosingDate");
 
                     b.Property<string>("CreatedBy")
                         .HasMaxLength(256);
 
                     b.Property<DateTime>("CreatedDate");
+
+                    b.Property<int?>("CurrencyId");
+
+                    b.Property<DateTime>("OpeningDate");
+
+                    b.Property<int?>("OwnerId");
 
                     b.Property<int>("Status");
 
@@ -51,39 +52,11 @@ namespace ASCA.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ASCAId");
+                    b.HasIndex("CurrencyId");
 
-                    b.HasIndex("AccountTypeId");
-
-                    b.HasIndex("ContributorId");
+                    b.HasIndex("OwnerId");
 
                     b.ToTable("Accounts","ASCA");
-                });
-
-            modelBuilder.Entity("DAL.Models.AccountType", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("CreatedBy")
-                        .HasMaxLength(256);
-
-                    b.Property<DateTime>("CreatedDate");
-
-                    b.Property<string>("Description");
-
-                    b.Property<string>("Name");
-
-                    b.Property<int>("Status");
-
-                    b.Property<string>("UpdatedBy")
-                        .HasMaxLength(256);
-
-                    b.Property<DateTime>("UpdatedDate");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("AccountTypes","ASCA");
                 });
 
             modelBuilder.Entity("DAL.Models.Address", b =>
@@ -107,8 +80,6 @@ namespace ASCA.Migrations
                     b.Property<int>("PersonId");
 
                     b.Property<int?>("StateId");
-
-                    b.Property<int>("Status");
 
                     b.Property<string>("UpdatedBy")
                         .HasMaxLength(256);
@@ -237,33 +208,11 @@ namespace ASCA.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("CreatedBy")
-                        .HasMaxLength(256);
-
-                    b.Property<DateTime>("CreatedDate");
-
-                    b.Property<int?>("CurrencyId");
-
-                    b.Property<DateTime>("EndDate");
-
-                    b.Property<string>("Name");
-
-                    b.Property<DateTime>("StartDate");
-
-                    b.Property<int>("Status");
-
-                    b.Property<int?>("TreasurerId");
-
-                    b.Property<string>("UpdatedBy")
-                        .HasMaxLength(256);
-
-                    b.Property<DateTime>("UpdatedDate");
+                    b.Property<int>("AccountId");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CurrencyId");
-
-                    b.HasIndex("TreasurerId");
+                    b.HasIndex("AccountId");
 
                     b.ToTable("ASCAs","ASCA");
                 });
@@ -283,8 +232,6 @@ namespace ASCA.Migrations
                     b.Property<string>("Name");
 
                     b.Property<int?>("StateId");
-
-                    b.Property<int>("Status");
 
                     b.Property<string>("UpdatedBy")
                         .HasMaxLength(256);
@@ -316,8 +263,6 @@ namespace ASCA.Migrations
 
                     b.Property<string>("Name");
 
-                    b.Property<int>("Status");
-
                     b.Property<string>("UpdatedBy")
                         .HasMaxLength(256);
 
@@ -344,8 +289,6 @@ namespace ASCA.Migrations
 
                     b.Property<int?>("PayRollRepId");
 
-                    b.Property<int>("Status");
-
                     b.Property<string>("UpdatedBy")
                         .HasMaxLength(256);
 
@@ -365,8 +308,6 @@ namespace ASCA.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int?>("ASCAId");
-
                     b.Property<string>("CreatedBy")
                         .HasMaxLength(256);
 
@@ -374,16 +315,12 @@ namespace ASCA.Migrations
 
                     b.Property<int?>("PersonId");
 
-                    b.Property<int>("Status");
-
                     b.Property<string>("UpdatedBy")
                         .HasMaxLength(256);
 
                     b.Property<DateTime>("UpdatedDate");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ASCAId");
 
                     b.HasIndex("PersonId");
 
@@ -401,8 +338,6 @@ namespace ASCA.Migrations
                     b.Property<DateTime>("CreatedDate");
 
                     b.Property<string>("Name");
-
-                    b.Property<int>("Status");
 
                     b.Property<string>("UpdatedBy")
                         .HasMaxLength(256);
@@ -427,8 +362,6 @@ namespace ASCA.Migrations
                     b.Property<DateTime>("CreatedDate");
 
                     b.Property<string>("Name");
-
-                    b.Property<int>("Status");
 
                     b.Property<string>("Symbol");
 
@@ -476,8 +409,6 @@ namespace ASCA.Migrations
                         .HasMaxLength(30)
                         .IsUnicode(false);
 
-                    b.Property<int>("Status");
-
                     b.Property<string>("UpdatedBy")
                         .HasMaxLength(256);
 
@@ -503,8 +434,6 @@ namespace ASCA.Migrations
                     b.Property<DateTime>("CreatedDate");
 
                     b.Property<string>("Name");
-
-                    b.Property<int>("Status");
 
                     b.Property<string>("UpdatedBy")
                         .HasMaxLength(256);
@@ -533,8 +462,6 @@ namespace ASCA.Migrations
                     b.Property<int?>("PersonId");
 
                     b.Property<int>("PhoneType");
-
-                    b.Property<int>("Status");
 
                     b.Property<string>("UpdatedBy")
                         .HasMaxLength(256);
@@ -566,8 +493,6 @@ namespace ASCA.Migrations
 
                     b.Property<int?>("PersonId");
 
-                    b.Property<int>("Status");
-
                     b.Property<string>("UpdatedBy")
                         .HasMaxLength(256);
 
@@ -582,6 +507,50 @@ namespace ASCA.Migrations
                     b.HasIndex("PersonId");
 
                     b.ToTable("Employees","ASCA");
+                });
+
+            modelBuilder.Entity("DAL.Models.Loan", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("AccountId");
+
+                    b.Property<decimal>("InterestRate");
+
+                    b.Property<int>("InterestRatePeriodicity");
+
+                    b.Property<decimal>("LoandAmount");
+
+                    b.Property<int>("Term");
+
+                    b.Property<int>("TermPeriodicity");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AccountId");
+
+                    b.ToTable("Loans","ASCA");
+                });
+
+            modelBuilder.Entity("DAL.Models.LoanDetail", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<decimal>("Amount");
+
+                    b.Property<int>("LoanId");
+
+                    b.Property<int>("SavingId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("LoanId");
+
+                    b.HasIndex("SavingId");
+
+                    b.ToTable("LoanDetails","ASCA");
                 });
 
             modelBuilder.Entity("DAL.Models.Order", b =>
@@ -606,8 +575,6 @@ namespace ASCA.Migrations
                     b.Property<DateTime>("DateModified");
 
                     b.Property<decimal>("Discount");
-
-                    b.Property<int>("Status");
 
                     b.Property<string>("UpdatedBy")
                         .HasMaxLength(256);
@@ -640,8 +607,6 @@ namespace ASCA.Migrations
                     b.Property<int>("ProductId");
 
                     b.Property<int>("Quantity");
-
-                    b.Property<int>("Status");
 
                     b.Property<decimal>("UnitPrice");
 
@@ -677,8 +642,6 @@ namespace ASCA.Migrations
 
                     b.Property<string>("Name");
 
-                    b.Property<int>("Status");
-
                     b.Property<string>("Surname");
 
                     b.Property<string>("UpdatedBy")
@@ -708,8 +671,6 @@ namespace ASCA.Migrations
                     b.Property<int?>("PersonId");
 
                     b.Property<int>("PhoneType");
-
-                    b.Property<int>("Status");
 
                     b.Property<string>("UpdatedBy")
                         .HasMaxLength(256);
@@ -760,8 +721,6 @@ namespace ASCA.Migrations
 
                     b.Property<decimal>("SellingPrice");
 
-                    b.Property<int>("Status");
-
                     b.Property<int>("UnitsInStock");
 
                     b.Property<string>("UpdatedBy")
@@ -803,8 +762,6 @@ namespace ASCA.Migrations
                         .IsRequired()
                         .HasMaxLength(100);
 
-                    b.Property<int>("Status");
-
                     b.Property<string>("UpdatedBy")
                         .HasMaxLength(256);
 
@@ -831,8 +788,6 @@ namespace ASCA.Migrations
 
                     b.Property<int>("RleationshipType");
 
-                    b.Property<int>("Status");
-
                     b.Property<string>("UpdatedBy")
                         .HasMaxLength(256);
 
@@ -845,6 +800,22 @@ namespace ASCA.Migrations
                     b.HasIndex("Person2Id");
 
                     b.ToTable("Relationships","ASCA");
+                });
+
+            modelBuilder.Entity("DAL.Models.Saving", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("AccountId");
+
+                    b.Property<decimal>("AvailableToLoan");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AccountId");
+
+                    b.ToTable("Savings","ASCA");
                 });
 
             modelBuilder.Entity("DAL.Models.State", b =>
@@ -860,8 +831,6 @@ namespace ASCA.Migrations
                     b.Property<DateTime>("CreatedDate");
 
                     b.Property<string>("Name");
-
-                    b.Property<int>("Status");
 
                     b.Property<string>("UpdatedBy")
                         .HasMaxLength(256);
@@ -882,19 +851,20 @@ namespace ASCA.Migrations
 
                     b.Property<int?>("AccountId");
 
-                    b.Property<string>("Comments");
-
                     b.Property<string>("CreatedBy")
                         .HasMaxLength(256);
 
                     b.Property<DateTime>("CreatedDate");
 
-                    b.Property<string>("Discriminator")
-                        .IsRequired();
+                    b.Property<decimal?>("Credit");
 
-                    b.Property<int>("Status");
+                    b.Property<decimal?>("Debit");
+
+                    b.Property<string>("Details");
 
                     b.Property<DateTime>("TransactionDate");
+
+                    b.Property<int>("TransactionType");
 
                     b.Property<string>("UpdatedBy")
                         .HasMaxLength(256);
@@ -906,8 +876,6 @@ namespace ASCA.Migrations
                     b.HasIndex("AccountId");
 
                     b.ToTable("Transactions","ASCA");
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("Transaction");
                 });
 
             modelBuilder.Entity("DAL.Models.UniqueID", b =>
@@ -923,8 +891,6 @@ namespace ASCA.Migrations
                     b.Property<string>("Name");
 
                     b.Property<int?>("PersonId");
-
-                    b.Property<int>("Status");
 
                     b.Property<int>("Type");
 
@@ -1024,63 +990,15 @@ namespace ASCA.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("DAL.Models.Deposit", b =>
-                {
-                    b.HasBaseType("DAL.Models.Transaction");
-
-                    b.Property<int?>("AccountId1");
-
-                    b.HasIndex("AccountId1");
-
-                    b.ToTable("Deposits","ASCA");
-
-                    b.HasDiscriminator().HasValue("Deposit");
-                });
-
-            modelBuilder.Entity("DAL.Models.Transference", b =>
-                {
-                    b.HasBaseType("DAL.Models.Transaction");
-
-                    b.Property<int?>("FromAccountId");
-
-                    b.Property<int?>("ToAccountId");
-
-                    b.HasIndex("FromAccountId");
-
-                    b.HasIndex("ToAccountId");
-
-                    b.ToTable("Transferences","ASCA");
-
-                    b.HasDiscriminator().HasValue("Transference");
-                });
-
-            modelBuilder.Entity("DAL.Models.Withdrawal", b =>
-                {
-                    b.HasBaseType("DAL.Models.Transaction");
-
-                    b.Property<int?>("AccountId1")
-                        .HasColumnName("Withdrawal_AccountId1");
-
-                    b.HasIndex("AccountId1");
-
-                    b.ToTable("Withdrawals","ASCA");
-
-                    b.HasDiscriminator().HasValue("Withdrawal");
-                });
-
             modelBuilder.Entity("DAL.Models.Account", b =>
                 {
-                    b.HasOne("DAL.Models.ASCA", "ASCA")
+                    b.HasOne("DAL.Models.Currency", "Currency")
                         .WithMany()
-                        .HasForeignKey("ASCAId");
+                        .HasForeignKey("CurrencyId");
 
-                    b.HasOne("DAL.Models.AccountType", "AccountType")
+                    b.HasOne("DAL.Models.Contributor", "Owner")
                         .WithMany()
-                        .HasForeignKey("AccountTypeId");
-
-                    b.HasOne("DAL.Models.Contributor", "Contributor")
-                        .WithMany()
-                        .HasForeignKey("ContributorId");
+                        .HasForeignKey("OwnerId");
                 });
 
             modelBuilder.Entity("DAL.Models.Address", b =>
@@ -1105,13 +1023,10 @@ namespace ASCA.Migrations
 
             modelBuilder.Entity("DAL.Models.ASCA", b =>
                 {
-                    b.HasOne("DAL.Models.Currency", "Currency")
+                    b.HasOne("DAL.Models.Account", "Account")
                         .WithMany()
-                        .HasForeignKey("CurrencyId");
-
-                    b.HasOne("DAL.Models.Person", "Treasurer")
-                        .WithMany()
-                        .HasForeignKey("TreasurerId");
+                        .HasForeignKey("AccountId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("DAL.Models.City", b =>
@@ -1145,10 +1060,6 @@ namespace ASCA.Migrations
 
             modelBuilder.Entity("DAL.Models.Contributor", b =>
                 {
-                    b.HasOne("DAL.Models.ASCA")
-                        .WithMany("Contributors")
-                        .HasForeignKey("ASCAId");
-
                     b.HasOne("DAL.Models.Person", "Person")
                         .WithMany()
                         .HasForeignKey("PersonId");
@@ -1188,6 +1099,27 @@ namespace ASCA.Migrations
                     b.HasOne("DAL.Models.Person", "Person")
                         .WithMany()
                         .HasForeignKey("PersonId");
+                });
+
+            modelBuilder.Entity("DAL.Models.Loan", b =>
+                {
+                    b.HasOne("DAL.Models.Account", "Account")
+                        .WithMany()
+                        .HasForeignKey("AccountId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("DAL.Models.LoanDetail", b =>
+                {
+                    b.HasOne("DAL.Models.Loan")
+                        .WithMany("ContributorsCollection")
+                        .HasForeignKey("LoanId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("DAL.Models.Saving")
+                        .WithMany("LoansCollections")
+                        .HasForeignKey("SavingId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("DAL.Models.Order", b =>
@@ -1246,6 +1178,14 @@ namespace ASCA.Migrations
                         .HasForeignKey("Person2Id");
                 });
 
+            modelBuilder.Entity("DAL.Models.Saving", b =>
+                {
+                    b.HasOne("DAL.Models.Account", "Account")
+                        .WithMany()
+                        .HasForeignKey("AccountId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
             modelBuilder.Entity("DAL.Models.State", b =>
                 {
                     b.HasOne("DAL.Models.Country", "Country")
@@ -1255,7 +1195,7 @@ namespace ASCA.Migrations
 
             modelBuilder.Entity("DAL.Models.Transaction", b =>
                 {
-                    b.HasOne("DAL.Models.Account")
+                    b.HasOne("DAL.Models.Account", "Account")
                         .WithMany("Transactions")
                         .HasForeignKey("AccountId");
                 });
@@ -1310,31 +1250,6 @@ namespace ASCA.Migrations
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("DAL.Models.Deposit", b =>
-                {
-                    b.HasOne("DAL.Models.Account", "Account")
-                        .WithMany()
-                        .HasForeignKey("AccountId1");
-                });
-
-            modelBuilder.Entity("DAL.Models.Transference", b =>
-                {
-                    b.HasOne("DAL.Models.Account", "FromAccount")
-                        .WithMany()
-                        .HasForeignKey("FromAccountId");
-
-                    b.HasOne("DAL.Models.Account", "ToAccount")
-                        .WithMany()
-                        .HasForeignKey("ToAccountId");
-                });
-
-            modelBuilder.Entity("DAL.Models.Withdrawal", b =>
-                {
-                    b.HasOne("DAL.Models.Account", "Account")
-                        .WithMany()
-                        .HasForeignKey("AccountId1");
                 });
 #pragma warning restore 612, 618
         }

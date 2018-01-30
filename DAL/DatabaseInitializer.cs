@@ -49,8 +49,8 @@ namespace DAL
                 await EnsureRoleAsync(adminRoleName, "Default administrator", ApplicationPermissions.GetAllPermissionValues());
                 await EnsureRoleAsync(userRoleName, "Default user", new string[] { });
 
-                await CreateUserAsync("admin", "admin@transmaquila.com", "Inbuilt Administrator", "admin@transmaquila.com", "+1 (123) 000-0000", new string[] { adminRoleName });
-                await CreateUserAsync("user", "user@transmaquila.com", "Inbuilt Standard User", "user@transmaquila.com", "+1 (123) 000-0001", new string[] { userRoleName });
+                await CreateUserAsync("admin", "admin", "Inbuilt Administrator", "admin@transmaquila.com", "+1 (123) 000-0000", new string[] { adminRoleName });
+                await CreateUserAsync("user", "user", "Inbuilt Standard User", "user@transmaquila.com", "+1 (123) 000-0001", new string[] { userRoleName });
 
                 _logger.LogInformation("Inbuilt account generation completed");
             }

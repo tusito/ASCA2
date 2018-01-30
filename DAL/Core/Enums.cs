@@ -66,4 +66,26 @@ namespace DAL.Core
         UndoFailed,
         UndoSucceeded
     }
+
+    public enum Periodicity
+    {
+        Daily,
+        Weekly,
+        Monthly,
+        Yearly
+    }
+
+    public enum RowType
+    {
+        Real,
+        Plan
+    }
+
+    public enum AccountType
+    {
+        ASCA,
+        Savings,
+        Loan
+
+    }
 }

@@ -13,6 +13,7 @@ namespace DAL.Models
         public int Id { get; set; }
 
         public int PersonId { get; set; }
+        public Person Person { get; set; }
 
         public string Address1 { get; set; }
         public string Address2 { get; set; }
@@ -21,6 +22,5 @@ namespace DAL.Models
         public State State { get; set; }
         public Country Country { get; set; }
 
-        public Person Person { get; set; }
     }
 }

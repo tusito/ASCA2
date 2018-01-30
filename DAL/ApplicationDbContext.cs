@@ -4,15 +4,13 @@
 // ===============================
 
 using DAL.Models;
+using DAL.Models.Interfaces;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Threading;
-using DAL.Models.Interfaces;
+using System.Threading.Tasks;
 
 namespace DAL
 {
@@ -28,15 +26,15 @@ namespace DAL
         //ASCA classes 
 
         public DbSet<Account> Accounts { get; set; }
-        public DbSet<Contributor> Contributors { get; set; }
-        public DbSet<AccountType> AccountTypes { get; set; }
         public DbSet<ASCA> ASCAs { get; set; }
+        public DbSet<Loan> Loans { get; set; }
+        public DbSet<LoanDetail> LoanDetails { get; set; }
+        public DbSet<Saving> Savings { get; set; }
+
+        public DbSet<Contributor> Contributors { get; set; }
         public DbSet<Relationship> Relationships { get; set; }
 
-        //public DbSet<Transaction> Transactions { get; set; }
-        public DbSet<Deposit> Deposits { get; set; }
-        //public DbSet<Withdrawal> Withdraws { get; set; }
-        //public DbSet<Transference> Transferences { get; set; }
+        public DbSet<Transaction> Transactions { get; set; }
 
         //ASCA classes Common
         public DbSet<Address> Addresses { get; set; }
@@ -57,10 +55,7 @@ namespace DAL
         public ApplicationDbContext(DbContextOptions options) : base(options)
         {
             
-
-
         }
-
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -102,15 +97,31 @@ namespace DAL
 
             //ASCA Entities
             builder.Entity<Account>().ToTable("Accounts", "ASCA");
-            builder.Entity<Contributor>().ToTable("Contributors", "ASCA");
-            builder.Entity<AccountType>().ToTable("AccountTypes", "ASCA");
+
+            builder.Entity<Loan>().ToTable("Loans", "ASCA");
+            builder.Entity<Loan>().Property(a => a.AccountId).IsRequired();
+            //builder.Entity<Loan>().HasMany(a => a.LoanAccountsSources).WithOne().HasForeignKey(l => l.LoanId).IsRequired();
+
+            builder.Entity<LoanDetail>().ToTable("LoanDetails", "ASCA");
+
+            //builder.Entity<Loan>().HasMany(a => a.ContributorsCollection).WithOne().HasForeignKey(b => b.LoanId).IsRequired().OnDelete(DeleteBehavior.Cascade);
+            //builder.Entity<Saving>().HasMany(a => a.LoansCollection).WithOne().HasForeignKey(b => b.SavingId).IsRequired().OnDelete(DeleteBehavior.Cascade);
+
+            builder.Entity<LoanDetail>().Property(a => a.SavingId).IsRequired();
+            builder.Entity<LoanDetail>().Property(a => a.LoanId).IsRequired();
+
+            builder.Entity<Saving>().ToTable("Savings", "ASCA");
             builder.Entity<ASCA>().ToTable("ASCAs", "ASCA");
+
+
+
+            builder.Entity<Saving>().Property(a => a.AccountId).IsRequired();
+            builder.Entity<ASCA>().Property(a => a.AccountId).IsRequired();
+
+            builder.Entity<Contributor>().ToTable("Contributors", "ASCA");
             builder.Entity<Relationship>().ToTable("Relationships", "ASCA");
 
-            //builder.Entity<Transaction>().ToTable("Transactions", "ASCA");
-            builder.Entity<Deposit>().ToTable("Deposits", "ASCA");
-            //builder.Entity<Withdrawal>().ToTable("Withdrawals", "ASCA");
-            //builder.Entity<Transference>().ToTable("Transferences", "ASCA");
+            builder.Entity<Transaction>().ToTable("Transactions", "ASCA");
 
             //Common Entities
             builder.Entity<Person>().HasOne(a => a.Address).WithOne(b => b.Person);
@@ -130,15 +141,7 @@ namespace DAL
             builder.Entity<State>().ToTable("States", "ASCA");
             builder.Entity<UniqueID>().ToTable("UniqueIDs", "ASCA");
 
-
-
         }
-
-
-
-
-
-
 
         public override int SaveChanges()
         {
